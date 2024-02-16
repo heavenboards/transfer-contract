@@ -1,10 +1,12 @@
 package transfer.contract.domain.user;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 /**
  * Роль пользователя.
  */
+@Getter
 @AllArgsConstructor
 public enum UserRole {
     /**
