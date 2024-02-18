@@ -1,10 +1,10 @@
 package transfer.contract.api;
 
 import feign.Headers;
-import heavenboards.user.service.user.UserEntity;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import transfer.contract.domain.user.UserTo;
 
 /**
  * Api-клиент для сервиса пользователей.
@@ -26,5 +26,5 @@ public interface UserApi {
      * @return найденный пользователь
      */
     @GetMapping(value = "/api/v1/user/{username}", produces = "application/json")
-    UserEntity findUserByUsername(@PathVariable String username);
+    UserTo findUserByUsername(@PathVariable String username);
 }
