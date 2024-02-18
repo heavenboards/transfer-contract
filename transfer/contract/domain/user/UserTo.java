@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.time.ZonedDateTime;
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * TO-класс для пользователя.
@@ -22,6 +23,11 @@ import java.util.List;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 public class UserTo implements UserDetails {
+    /**
+     * Идентификатор.
+     */
+    private UUID id;
+
     /**
      * Уникальное имя пользователя.
      */
