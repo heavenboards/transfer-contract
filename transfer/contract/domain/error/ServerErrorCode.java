@@ -23,4 +23,9 @@ public enum ServerErrorCode {
      * Невалидный JWT-токен.
      */
     WRONG_JWT_TOKEN,
+
+    /**
+     * Не найдено обработчика для эндпоинта.
+     */
+    NO_HANDLER_FOUND,
 }

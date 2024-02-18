@@ -5,16 +5,18 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 /**
- * TO-для информации о произошедшей ошибке.
+ * TO для ошибки валидации тела JSON.
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor(staticName = "of")
 @Builder(toBuilder = true)
-public class ServerErrorTo {
+public class ValidationErrorTo {
     /**
-     * Код ошибки.
+     * Ошибки по всем полям.
      */
-    private ServerErrorCode errorCode;
+    private List<FieldValidationErrorTo> fieldErrors;
 }
