@@ -26,5 +26,5 @@ public interface UserApi {
      * @return найденный пользователь
      */
     @GetMapping(value = "/api/v1/user/{username}", produces = "application/json")
-    UserEntity findUserById(@PathVariable String username);
+    UserEntity findUserByUsername(@PathVariable String username);
 }
