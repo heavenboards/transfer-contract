@@ -36,7 +36,6 @@ public class UserTo implements UserDetails {
     /**
      * Хэшированный пароль.
      */
-    @JsonIgnore
     private String password;
 
     /**
