@@ -28,4 +28,9 @@ public enum ServerErrorCode {
      * Не найдено обработчика для эндпоинта.
      */
     NO_HANDLER_FOUND,
+
+    /**
+     * Что-то пошло не так...
+     */
+    CAUGHT_EXCEPTION,
 }

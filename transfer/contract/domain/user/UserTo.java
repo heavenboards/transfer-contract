@@ -83,13 +83,15 @@ public class UserTo implements UserDetails {
      * Дата и время создания.
      */
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
-    private ZonedDateTime createdAt;
+    @Builder.Default
+    private ZonedDateTime createdAt = ZonedDateTime.now();
 
     /**
      * Дата и время последнего обновления.
      */
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
-    private ZonedDateTime updatedAt;
+    @Builder.Default
+    private ZonedDateTime updatedAt = ZonedDateTime.now();
 
     /**
      * Проекты.
