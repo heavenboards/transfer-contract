@@ -28,9 +28,11 @@ jobs:
       - name: 👉🏼 Делаем maven wrapper исполняемым
         run: |
           ls
+          cd ./user-service
           chmod +x ./mvnw
 
       - name: 👉🏼 Запускаем проверку Code Style
         run: |
           ls
+          cd ./user-service
           ./mvnw checkstyle:check
