@@ -22,6 +22,5 @@ public enum UserRole {
     /**
      * Текстовое название роли.
      */
-    @SuppressWarnings("unused")
     private final String name;
 }

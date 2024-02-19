@@ -9,8 +9,10 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import transfer.contract.domain.project.ProjectTo;
 
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
@@ -88,6 +90,12 @@ public class UserTo implements UserDetails {
      */
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
     private ZonedDateTime updatedAt;
+
+    /**
+     * Проекты.
+     */
+    @Builder.Default
+    private List<ProjectTo> projects = new ArrayList<>();
 
     @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
