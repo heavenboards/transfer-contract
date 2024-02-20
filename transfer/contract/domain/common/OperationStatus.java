@@ -6,20 +6,14 @@ import lombok.AllArgsConstructor;
  * Базовый енам для результата операции.
  */
 @AllArgsConstructor
-public enum OperationResult {
+public enum OperationStatus {
     /**
      * Успешно.
      */
-    OK("Успешно"),
+    OK,
 
     /**
      * Ошибка.
      */
-    FAILED("Ошибка");
-
-    /**
-     * Текстовое название.
-     */
-    @SuppressWarnings("unused")
-    private final String name;
+    FAILED
 }
