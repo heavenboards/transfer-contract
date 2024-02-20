@@ -1,4 +1,4 @@
-package transfer.contract.domain.error;
+package transfer.contract.domain.validation;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -37,6 +37,7 @@ public class RegistrationRequestTo {
 
     /**
      * Имя.
+     * Латинские буквы, длина от 2 до 20 символов
      */
     @Pattern(regexp = "^[a-zA-Z\\\\s]{2,20}$", message = "Некорректное имя")
     @NotNull(message = "Пустое имя")
@@ -44,6 +45,7 @@ public class RegistrationRequestTo {
 
     /**
      * Фамилия.
+     * Латинские буквы, длина от 2 до 20 символов
      */
     @Pattern(regexp = "^[a-zA-Z\\\\s]{2,20}$", message = "Некорректная фамилия")
     @NotNull(message = "Пустая фамилия")

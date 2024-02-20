@@ -41,5 +41,5 @@ public interface UserApi {
      * @return пользователи
      */
     @PostMapping(value = "/api/v1/user", produces = "application/json")
-    List<UserTo> findAllByIds(final @RequestBody Set<UUID> ids);
+    List<UserTo> findUsersByIds(final @RequestBody Set<UUID> ids);
 }

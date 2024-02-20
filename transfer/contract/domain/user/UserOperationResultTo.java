@@ -1,4 +1,4 @@
-package transfer.contract.domain.project;
+package transfer.contract.domain.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,13 +11,13 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * Результат операции над проектом.
+ * Результат операции над пользователем.
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
-public class ProjectOperationResultTo {
+public class UserOperationResultTo {
     /**
      * Статус выполнения операции.
      */
@@ -33,24 +33,24 @@ public class ProjectOperationResultTo {
      * Ошибки, возникшие в результате выполнения операции.
      */
     @Builder.Default
-    private List<ProjectOperationErrorTo> errors = new ArrayList<>();
+    private List<UserOperationErrorTo> errors = new ArrayList<>();
 
     /**
-     * TO ошибки при операции над проектом.
+     * TO ошибки при операции над пользователем.
      */
     @Data
     @NoArgsConstructor
     @AllArgsConstructor
     @Builder(toBuilder = true)
-    public static class ProjectOperationErrorTo {
+    public static class UserOperationErrorTo {
         /**
          * Идентификатор сущности, у которой произошла ошибка при выполнении операции.
          */
         private UUID failedEntityId;
 
         /**
-         * Код ошибки при операции над проектом.
+         * Код ошибки при операции над пользователем.
          */
-        private ProjectOperationErrorCode errorCode;
+        private UserOperationErrorCode errorCode;
     }
 }

@@ -28,7 +28,7 @@ public interface ProjectApi {
      * @return все проекты пользователя
      */
     @GetMapping(value = "/api/v1/project", produces = "application/json")
-    List<ProjectTo> getAllProjects();
+    List<ProjectTo> findUserProjects();
 
     /**
      * Создать проект.
