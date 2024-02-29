@@ -15,6 +15,8 @@ import transfer.contract.domain.validation.FieldValidationErrorTo;
 import transfer.contract.domain.validation.ValidationErrorTo;
 import transfer.contract.exception.ApplicationException;
 import transfer.contract.exception.BaseErrorCode;
+import transfer.contract.exception.ClientApplicationException;
+import transfer.contract.exception.ServerApplicationException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +43,7 @@ public class ApplicationExceptionControllerAdvice {
             .body(exception);
 
         if (entity.getStatusCode().is4xxClientError()) {
-            log.warn("Произошла клиентская ошибка: {}", exception.getMessage());
+            log.error("Произошла клиентская ошибка: {}", exception.getMessage());
         }
         if (entity.getStatusCode().is5xxServerError()) {
             log.error("Произошла ошибка сервера: {}", exception.getMessage());
@@ -51,12 +53,27 @@ public class ApplicationExceptionControllerAdvice {
     }
 
     /**
+     * Базовый обработчик для всех исключений, вылетающих на сервере.
+     *
+     * @param exception - исключение
+     * @return ApplicationException c 500 кодом ошибки
+     */
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ApplicationException handleInternalException(Exception exception) {
+        log.error("Поймано {} с сообщением: {}", exception.getClass().getSimpleName(),
+            exception.getMessage());
+
+        return new ServerApplicationException(BaseErrorCode.INTERNAL_ERROR, exception.getMessage());
+    }
+
+    /**
      * Обработка исключений при невалидных данных в теле запроса.
      *
      * @param exception - исключение
      * @return to с ошибками по всем полям
      */
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ValidationErrorTo handleValidationException(MethodArgumentNotValidException exception) {
         List<FieldValidationErrorTo> fieldErrors = new ArrayList<>();
@@ -79,8 +96,8 @@ public class ApplicationExceptionControllerAdvice {
         NoHandlerFoundException.class,
         HttpRequestMethodNotSupportedException.class
     })
-    public ApplicationException handleNoHandlerFoundException() {
-        return new ApplicationException(BaseErrorCode.NOT_FOUND,
+    public ClientApplicationException handleNoHandlerFoundException() {
+        return new ClientApplicationException(BaseErrorCode.NOT_FOUND,
             "Не найден обработчик для этого эндпоинта");
     }
 }

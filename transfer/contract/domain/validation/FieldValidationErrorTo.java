@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Builder(toBuilder = true)
 public class FieldValidationErrorTo {
     /**
-     * Название поля.
+     * Название поля с ошибкой.
      */
     private String fieldName;
 

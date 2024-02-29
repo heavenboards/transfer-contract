@@ -44,9 +44,9 @@ public class ProjectOperationResultTo {
     @Builder(toBuilder = true)
     public static class ProjectOperationErrorTo {
         /**
-         * Идентификатор сущности, у которой произошла ошибка при выполнении операции.
+         * Идентификатор сущности проекта, у которого произошла ошибка при выполнении операции.
          */
-        private UUID failedEntityId;
+        private UUID failedProjectId;
 
         /**
          * Код ошибки при операции над проектом.

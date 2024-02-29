@@ -54,7 +54,7 @@ public class AuthenticationOperationResultTo {
         private UUID failedUserId;
 
         /**
-         * Код ошибки при операции над проектом.
+         * Код ошибки при операции аутентификации / регистрации.
          */
         private AuthenticationOperationErrorCode errorCode;
     }

@@ -13,4 +13,9 @@ public enum BaseErrorCode {
      * Некорректный JWT-токен в Authorization хедере.
      */
     WRONG_JWT_TOKEN,
+
+    /**
+     * Базовая код ошибки на сервере.
+     */
+    INTERNAL_ERROR,
 }

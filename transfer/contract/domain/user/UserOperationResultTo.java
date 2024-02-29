@@ -44,9 +44,9 @@ public class UserOperationResultTo {
     @Builder(toBuilder = true)
     public static class UserOperationErrorTo {
         /**
-         * Идентификатор сущности, у которой произошла ошибка при выполнении операции.
+         * Идентификатор сущности пользователя, у которого произошла ошибка при выполнении операции.
          */
-        private UUID failedEntityId;
+        private UUID failedUserId;
 
         /**
          * Код ошибки при операции над пользователем.
