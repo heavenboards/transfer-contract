@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  */
 @ResponseStatus(HttpStatus.BAD_REQUEST)
 @JsonIgnoreProperties(value = {"cause", "stackTrace", "suppressed", "localizedMessage"})
-@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, property = "type")
+@JsonTypeInfo(use = JsonTypeInfo.Id.MINIMAL_CLASS, property = "type")
 @Getter
 public class ClientApplicationException extends ApplicationException {
     @JsonCreator

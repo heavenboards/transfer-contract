@@ -4,13 +4,7 @@ import feign.Headers;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import transfer.contract.domain.user.UserTo;
-
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
 
 /**
  * Api-клиент для сервиса пользователей.
@@ -33,13 +27,4 @@ public interface UserApi {
      */
     @GetMapping(value = "/api/v1/user/{username}", produces = "application/json")
     UserTo findUserByUsername(@PathVariable String username);
-
-    /**
-     * Найти всех пользователей по идентификаторам.
-     *
-     * @param ids - идентификаторы
-     * @return пользователи
-     */
-    @PostMapping(value = "/api/v1/user", produces = "application/json")
-    List<UserTo> findUsersByIds(final @RequestBody Set<UUID> ids);
 }
