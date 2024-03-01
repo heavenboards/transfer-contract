@@ -1,7 +1,5 @@
 package transfer.contract.domain.project;
 
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,10 +26,7 @@ public class ProjectTo {
 
     /**
      * Название.
-     * Не должно быть пустым, длина от 4 до 64 символов.
      */
-    @NotNull(message = "Пустое имя")
-    @Size(min = 4, max = 64, message = "Некорректная длина названия проекта.")
     private String name;
 
     /**

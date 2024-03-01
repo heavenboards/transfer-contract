@@ -25,9 +25,9 @@ public class UserOperationResultTo {
     private OperationStatus status = OperationStatus.OK;
 
     /**
-     * Идентификатор сущности, над которой была произведена операция.
+     * Идентификатор пользователя, над которым была произведена операция.
      */
-    private UUID entityId;
+    private UUID userId;
 
     /**
      * Ошибки, возникшие в результате выполнения операции.
