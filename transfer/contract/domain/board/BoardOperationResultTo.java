@@ -1,4 +1,4 @@
-package transfer.contract.domain.project;
+package transfer.contract.domain.board;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,13 +11,13 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * Результат операции над проектом.
+ * Результат операции над доской.
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
-public class ProjectOperationResultTo {
+public class BoardOperationResultTo {
     /**
      * Статус выполнения операции.
      */
@@ -25,32 +25,32 @@ public class ProjectOperationResultTo {
     private OperationStatus status = OperationStatus.OK;
 
     /**
-     * Идентификатор проекта, над которым была произведена операция.
+     * Идентификатор доски, над которой была произведена операция.
      */
-    private UUID projectId;
+    private UUID boardId;
 
     /**
      * Ошибки, возникшие в результате выполнения операции.
      */
     @Builder.Default
-    private List<ProjectOperationErrorTo> errors = new ArrayList<>();
+    private List<BoardOperationErrorTo> errors = new ArrayList<>();
 
     /**
-     * TO ошибки при операции над проектом.
+     * TO ошибки при операции над доской.
      */
     @Data
     @NoArgsConstructor
     @AllArgsConstructor
     @Builder(toBuilder = true)
-    public static class ProjectOperationErrorTo {
+    public static class BoardOperationErrorTo {
         /**
          * Идентификатор сущности проекта, у которого произошла ошибка при выполнении операции.
          */
-        private UUID failedProjectId;
+        private UUID failedBoardId;
 
         /**
-         * Код ошибки при операции над проектом.
+         * Код ошибки при операции над доской.
          */
-        private ProjectOperationErrorCode errorCode;
+        private BoardOperationErrorCode errorCode;
     }
 }
