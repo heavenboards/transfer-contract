@@ -39,6 +39,12 @@ public class TaskTo {
     private GroupTo group;
 
     /**
+     * Порядковый номер задачи в группе.
+     */
+    @Builder.Default
+    private Integer ordinalNumber = 1;
+
+    /**
      * Участники задачи и их роли.
      */
     @Builder.Default

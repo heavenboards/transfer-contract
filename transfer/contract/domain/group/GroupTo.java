@@ -35,6 +35,12 @@ public class GroupTo {
     private BoardTo board;
 
     /**
+     * Порядковый номер группы задач на доске.
+     */
+    @Builder.Default
+    private Integer ordinalNumber = 1;
+
+    /**
      * Задачи.
      */
     @Builder.Default
