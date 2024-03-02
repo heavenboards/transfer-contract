@@ -35,6 +35,12 @@ public class BoardTo {
     private ProjectTo project;
 
     /**
+     * Вес позиции доски в проекте.
+     * Нужен для определения порядка отображения досок в проекте на UI.
+     */
+    private Integer positionWeight;
+
+    /**
      * Группы задач.
      */
     @Builder.Default
