@@ -4,7 +4,7 @@ import feign.Headers;
 import org.springframework.cloud.openfeign.FeignClient;
 
 /**
- * Api-клиент для сервиса задач.
+ * Api-клиент для взаимодействия с задачами.
  */
 @Headers({
     "Accept: application/json",

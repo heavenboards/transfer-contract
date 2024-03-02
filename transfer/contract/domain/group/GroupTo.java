@@ -35,6 +35,12 @@ public class GroupTo {
     private BoardTo board;
 
     /**
+     * Вес позиции группы задач на доске.
+     * Нужен для определения порядка отображения групп на доске на UI.
+     */
+    private Integer positionWeight;
+
+    /**
      * Задачи.
      */
     @Builder.Default

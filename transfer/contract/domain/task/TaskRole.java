@@ -6,9 +6,24 @@ package transfer.contract.domain.task;
  */
 public enum TaskRole {
     /**
+     * Автор.
+     */
+    AUTHOR,
+
+    /**
+     * Исполнитель.
+     */
+    ASSIGNEE,
+
+    /**
      * Разработчик.
      */
     DEVELOPER,
+
+    /**
+     * Проверяющий код
+     */
+    CODE_REVIEWER,
 
     /**
      * Аналитик.

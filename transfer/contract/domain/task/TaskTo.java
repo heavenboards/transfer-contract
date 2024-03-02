@@ -39,6 +39,17 @@ public class TaskTo {
     private GroupTo group;
 
     /**
+     * Вес позиции задачи в группе.
+     * Нужен для определения порядка отображения задач в группе на UI.
+     */
+    private Integer positionWeight;
+
+    /**
+     * Номер задачи в группе.
+     */
+    private Integer number;
+
+    /**
      * Участники задачи и их роли.
      */
     @Builder.Default

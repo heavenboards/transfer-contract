@@ -27,5 +27,5 @@ public class TaskParticipantTo {
     /**
      * Роль пользователя в задаче.
      */
-    private TaskRole taskRole;
+    private TaskRole role;
 }
