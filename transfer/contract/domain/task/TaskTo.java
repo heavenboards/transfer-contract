@@ -45,6 +45,11 @@ public class TaskTo {
     private Integer positionWeight;
 
     /**
+     * Номер задачи в группе.
+     */
+    private Integer number;
+
+    /**
      * Участники задачи и их роли.
      */
     @Builder.Default
