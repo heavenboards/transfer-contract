@@ -39,10 +39,10 @@ public class TaskTo {
     private GroupTo group;
 
     /**
-     * Порядковый номер задачи в группе.
+     * Вес позиции задачи в группе.
+     * Нужен для определения порядка отображения задач в группе на UI.
      */
-    @Builder.Default
-    private Integer ordinalNumber = 1;
+    private Integer positionWeight;
 
     /**
      * Участники задачи и их роли.

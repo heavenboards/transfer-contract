@@ -35,10 +35,10 @@ public class GroupTo {
     private BoardTo board;
 
     /**
-     * Порядковый номер группы задач на доске.
+     * Вес позиции группы задач на доске.
+     * Нужен для определения порядка отображения групп на доске на UI.
      */
-    @Builder.Default
-    private Integer ordinalNumber = 1;
+    private Integer positionWeight;
 
     /**
      * Задачи.
