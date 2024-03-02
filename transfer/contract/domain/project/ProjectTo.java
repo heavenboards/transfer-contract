@@ -30,6 +30,12 @@ public class ProjectTo {
     private String name;
 
     /**
+     * Вес позиции проекта.
+     * Нужен для определения порядка отображения проектов на UI.
+     */
+    private Integer positionWeight;
+
+    /**
      * Участники проекта.
      */
     @Builder.Default
