@@ -18,7 +18,6 @@ import transfer.contract.domain.user.UserTo;
     url = "${microservice.user-api.url}"
 )
 public interface UserApi {
-
     /**
      * Получение пользователя по username.
      *
