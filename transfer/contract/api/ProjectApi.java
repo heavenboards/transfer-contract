@@ -5,6 +5,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import transfer.contract.domain.project.ProjectOperationResultTo;
 import transfer.contract.domain.project.ProjectTo;
@@ -49,4 +50,13 @@ public interface ProjectApi {
      */
     @PostMapping(value = "/api/v1/project", produces = "application/json")
     ProjectOperationResultTo createProject(final @RequestBody ProjectTo project);
+
+    /**
+     * Обновить проект.
+     *
+     * @param project - данные проекта.
+     * @return результат операции обновления
+     */
+    @PutMapping(value = "/api/v1/project", produces = "application/json")
+    ProjectOperationResultTo updateProject(final @RequestBody ProjectTo project);
 }
