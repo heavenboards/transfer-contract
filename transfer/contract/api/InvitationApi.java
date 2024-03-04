@@ -31,6 +31,14 @@ public interface InvitationApi {
     List<InvitationTo> findAllReceivedInvitations();
 
     /**
+     * Найти все приглашения, которые присылал этот пользователь другим пользователям.
+     *
+     * @return все найденные приглашения
+     */
+    @GetMapping(value = "/api/v1/invitation/sent", produces = "application/json")
+    List<InvitationTo> findAllSentInvitations();
+
+    /**
      * Запрос на создание приглашения пользователя в проект.
      *
      * @param invitation - to-модель приглашения пользователя в проект
