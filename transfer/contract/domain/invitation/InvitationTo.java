@@ -25,7 +25,12 @@ public class InvitationTo {
     /**
      * Пользователь, которого приглашают в проект.
      */
-    private UserTo user;
+    private UserTo invitedUser;
+
+    /**
+     * Пользователь, который отправил приглашение в проект.
+     */
+    private UserTo invitationSender;
 
     /**
      * Проект, в который приглашается пользователь.

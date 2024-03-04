@@ -2,10 +2,13 @@ package transfer.contract.api;
 
 import feign.Headers;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import transfer.contract.domain.invitation.InvitationOperationResultTo;
 import transfer.contract.domain.invitation.InvitationTo;
+
+import java.util.List;
 
 /**
  * Api-клиент для взаимодействия с приглашениями.
@@ -19,6 +22,14 @@ import transfer.contract.domain.invitation.InvitationTo;
     url = "${microservice.user-api.url}"
 )
 public interface InvitationApi {
+    /**
+     * Найти все приглашения, которые пришли этому пользователю в проекты.
+     *
+     * @return все найденные приглашения
+     */
+    @GetMapping(value = "/api/v1/invitation/received", produces = "application/json")
+    List<InvitationTo> findAllReceivedInvitations();
+
     /**
      * Запрос на создание приглашения пользователя в проект.
      *
