@@ -46,4 +46,22 @@ public interface InvitationApi {
      */
     @PostMapping(value = "/api/v1/invitation", produces = "application/json")
     InvitationOperationResultTo createInvitation(final @RequestBody InvitationTo invitation);
+
+    /**
+     * Запрос на подтверждение приглашения пользователя в проект.
+     *
+     * @param invitation - to-модель приглашения пользователя в проект
+     * @return результат подтверждения приглашения
+     */
+    @PostMapping(value = "/api/v1/invitation/accept", produces = "application/json")
+    InvitationOperationResultTo acceptInvitation(final @RequestBody InvitationTo invitation);
+
+    /**
+     * Запрос на отклонение приглашения пользователя в проект.
+     *
+     * @param invitation - to-модель приглашения пользователя в проект
+     * @return результат отклонения приглашения
+     */
+    @PostMapping(value = "/api/v1/invitation/reject", produces = "application/json")
+    InvitationOperationResultTo rejectInvitation(final @RequestBody InvitationTo invitation);
 }
