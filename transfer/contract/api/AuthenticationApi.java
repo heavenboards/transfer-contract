@@ -5,8 +5,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import transfer.contract.domain.authentication.AuthenticationOperationResultTo;
-import transfer.contract.domain.authentication.AuthenticationRequestTo;
-import transfer.contract.domain.authentication.RegistrationRequestTo;
+import transfer.contract.domain.user.UserTo;
 
 /**
  * Api-клиент для регистрации / аутентификации.
@@ -23,22 +22,18 @@ public interface AuthenticationApi {
     /**
      * Запрос на регистрацию.
      *
-     * @param request - данные для регистрации
+     * @param user - данные пользователя для регистрации
      * @return результат операции с токеном
      */
     @PostMapping("/api/v1/auth/register")
-    AuthenticationOperationResultTo register(
-        final @RequestBody RegistrationRequestTo request
-    );
+    AuthenticationOperationResultTo register(final @RequestBody UserTo user);
 
     /**
      * Запрос на аутентификацию.
      *
-     * @param request - данные для аутентификации
+     * @param user - данные пользователя для аутентификации
      * @return результат операции с токеном
      */
     @PostMapping("/api/v1/auth/authenticate")
-    AuthenticationOperationResultTo authenticate(
-        final @RequestBody AuthenticationRequestTo request
-    );
+    AuthenticationOperationResultTo authenticate(final @RequestBody UserTo user);
 }
