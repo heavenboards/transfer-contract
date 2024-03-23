@@ -9,7 +9,9 @@ import feign.jackson.JacksonDecoder;
 import feign.jackson.JacksonEncoder;
 import feign.okhttp.OkHttpClient;
 import feign.slf4j.Slf4jLogger;
+import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -40,15 +42,23 @@ public class FeignClientConfig {
      * декодером и кодировщиком Jackson, логгером Slf4j, уровнем логгирования NONE,
      * стратегией повторных попыток NEVER_RETRY и опциями запроса.
      */
-    private final Feign.Builder feignBuilderWithoutTarget = Feign.builder()
-            .client(new OkHttpClient())
-            .requestInterceptor(new AuthForwardingRequestInterceptor())
-            .decoder(new JacksonDecoder(objectMapper))
-            .encoder(new JacksonEncoder(objectMapper))
-            .logger(new Slf4jLogger(ProjectApi.class))
-            .logLevel(Logger.Level.NONE)
-            .retryer(Retryer.NEVER_RETRY)
-            .options(new Request.Options(15, TimeUnit.MINUTES, 15, TimeUnit.MINUTES, true));
+    private Feign.Builder feignBuilderWithoutTarget;
+
+    /**
+     * Инициализация {@link #feignBuilderWithoutTarget}.
+     */
+    @PostConstruct
+    private void initFeignBuilderWithoutTarget() {
+        feignBuilderWithoutTarget = Feign.builder()
+                .client(new OkHttpClient())
+                .requestInterceptor(new AuthForwardingRequestInterceptor())
+                .decoder(new JacksonDecoder(objectMapper))
+                .encoder(new JacksonEncoder(objectMapper))
+                .logger(new Slf4jLogger(ProjectApi.class))
+                .logLevel(Logger.Level.NONE)
+                .retryer(Retryer.NEVER_RETRY)
+                .options(new Request.Options(15, TimeUnit.MINUTES, 15, TimeUnit.MINUTES, true));
+    }
 
     /**
      * Конфигурация feign-клиента для сервиса аутентификации {@link AuthenticationApi}.
