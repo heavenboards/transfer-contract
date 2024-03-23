@@ -1,6 +1,7 @@
 package transfer.contract.api;
 
 import feign.Headers;
+import feign.RequestLine;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,17 +18,13 @@ import java.util.List;
     "Accept: application/json",
     "Content-Type: application/json"
 })
-@FeignClient(
-    value = "invitation-api",
-    url = "${microservice.user-api.url}"
-)
 public interface InvitationApi {
     /**
      * Найти все приглашения, которые пришли этому пользователю в проекты.
      *
      * @return все найденные приглашения
      */
-    @GetMapping(value = "/api/v1/invitation/received", produces = "application/json")
+    @RequestLine("GET /api/v1/invitation/received")
     List<InvitationTo> findAllReceivedInvitations();
 
     /**
@@ -35,7 +32,7 @@ public interface InvitationApi {
      *
      * @return все найденные приглашения
      */
-    @GetMapping(value = "/api/v1/invitation/sent", produces = "application/json")
+    @RequestLine("GET /api/v1/invitation/sent")
     List<InvitationTo> findAllSentInvitations();
 
     /**
@@ -44,7 +41,7 @@ public interface InvitationApi {
      * @param invitation - to-модель приглашения пользователя в проект
      * @return результат создания приглашения
      */
-    @PostMapping(value = "/api/v1/invitation", produces = "application/json")
+    @RequestLine("POST /api/v1/invitation")
     InvitationOperationResultTo createInvitation(final @RequestBody InvitationTo invitation);
 
     /**
@@ -53,7 +50,7 @@ public interface InvitationApi {
      * @param invitation - to-модель приглашения пользователя в проект
      * @return результат подтверждения приглашения
      */
-    @PostMapping(value = "/api/v1/invitation/accept", produces = "application/json")
+    @RequestLine("POST /api/v1/invitation/accept")
     InvitationOperationResultTo acceptInvitation(final @RequestBody InvitationTo invitation);
 
     /**
@@ -62,6 +59,6 @@ public interface InvitationApi {
      * @param invitation - to-модель приглашения пользователя в проект
      * @return результат отклонения приглашения
      */
-    @PostMapping(value = "/api/v1/invitation/reject", produces = "application/json")
+    @RequestLine("POST /api/v1/invitation/reject")
     InvitationOperationResultTo rejectInvitation(final @RequestBody InvitationTo invitation);
 }
