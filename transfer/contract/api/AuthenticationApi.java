@@ -2,8 +2,6 @@ package transfer.contract.api;
 
 import feign.Headers;
 import feign.RequestLine;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import transfer.contract.domain.authentication.AuthenticationOperationResultTo;
 import transfer.contract.domain.user.UserTo;
@@ -12,8 +10,8 @@ import transfer.contract.domain.user.UserTo;
  * Api-клиент для регистрации / аутентификации.
  */
 @Headers({
-    "Accept: application/json",
-    "Content-Type: application/json"
+        "Accept: application/json",
+        "Content-Type: application/json"
 })
 public interface AuthenticationApi {
     /**

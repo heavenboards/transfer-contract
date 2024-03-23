@@ -14,8 +14,8 @@ import java.util.UUID;
  * Api-клиент для сервиса проектов.
  */
 @Headers({
-    "Accept: application/json",
-    "Content-Type: application/json"
+        "Accept: application/json",
+        "Content-Type: application/json"
 })
 public interface ProjectApi {
     /**

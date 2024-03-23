@@ -2,8 +2,6 @@ package transfer.contract.api;
 
 import feign.Headers;
 import feign.RequestLine;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import transfer.contract.domain.task.TaskOperationResultTo;
 import transfer.contract.domain.task.TaskTo;
@@ -12,8 +10,8 @@ import transfer.contract.domain.task.TaskTo;
  * Api-клиент для взаимодействия с задачами.
  */
 @Headers({
-    "Accept: application/json",
-    "Content-Type: application/json"
+        "Accept: application/json",
+        "Content-Type: application/json"
 })
 public interface TaskApi {
     /**

@@ -2,10 +2,7 @@ package transfer.contract.api;
 
 import feign.Headers;
 import feign.RequestLine;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import transfer.contract.domain.user.UserTo;
 
@@ -17,8 +14,8 @@ import java.util.UUID;
  * Api-клиент для сервиса пользователей.
  */
 @Headers({
-    "Accept: application/json",
-    "Content-Type: application/json"
+        "Accept: application/json",
+        "Content-Type: application/json"
 })
 public interface UserApi {
     /**
@@ -28,7 +25,7 @@ public interface UserApi {
      * @return найденный пользователь
      */
     @RequestLine("GET /api/v1/user/{username}")
-    UserTo findUserByUsername(@PathVariable String username);
+    UserTo findUserByUsername(final @PathVariable String username);
 
     /**
      * Получение списка пользователей по идентификаторам.
@@ -37,5 +34,5 @@ public interface UserApi {
      * @return to-модели найденных пользователей
      */
     @RequestLine("POST /api/v1/user")
-    List<UserTo> findUsersByIds(@RequestBody Set<UUID> ids);
+    List<UserTo> findUsersByIds(final @RequestBody Set<UUID> ids);
 }

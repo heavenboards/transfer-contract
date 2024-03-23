@@ -2,10 +2,7 @@ package transfer.contract.api;
 
 import feign.Headers;
 import feign.RequestLine;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import transfer.contract.domain.board.BoardOperationResultTo;
 import transfer.contract.domain.board.BoardTo;
@@ -16,8 +13,8 @@ import java.util.UUID;
  * Api-клиент для сервиса досок.
  */
 @Headers({
-    "Accept: application/json",
-    "Content-Type: application/json"
+        "Accept: application/json",
+        "Content-Type: application/json"
 })
 public interface BoardApi {
     /**
@@ -35,6 +32,6 @@ public interface BoardApi {
      * @param board - to-модель создаваемой доски
      * @return результат операции создания
      */
-    @RequestLine(value = " POST /api/v1/board")
+    @RequestLine("POST /api/v1/board")
     BoardOperationResultTo createBoard(final @RequestBody BoardTo board);
 }

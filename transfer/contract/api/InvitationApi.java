@@ -2,9 +2,6 @@ package transfer.contract.api;
 
 import feign.Headers;
 import feign.RequestLine;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import transfer.contract.domain.invitation.InvitationOperationResultTo;
 import transfer.contract.domain.invitation.InvitationTo;
@@ -15,8 +12,8 @@ import java.util.List;
  * Api-клиент для взаимодействия с приглашениями.
  */
 @Headers({
-    "Accept: application/json",
-    "Content-Type: application/json"
+        "Accept: application/json",
+        "Content-Type: application/json"
 })
 public interface InvitationApi {
     /**
