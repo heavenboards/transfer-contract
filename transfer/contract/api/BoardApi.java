@@ -1,8 +1,8 @@
 package transfer.contract.api;
 
 import feign.Headers;
+import feign.Param;
 import feign.RequestLine;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import transfer.contract.domain.board.BoardOperationResultTo;
 import transfer.contract.domain.board.BoardTo;
@@ -13,8 +13,8 @@ import java.util.UUID;
  * Api-клиент для сервиса досок.
  */
 @Headers({
-        "Accept: application/json",
-        "Content-Type: application/json"
+    "Accept: application/json",
+    "Content-Type: application/json"
 })
 public interface BoardApi {
     /**
@@ -24,7 +24,7 @@ public interface BoardApi {
      * @return данные доски
      */
     @RequestLine("GET /api/v1/board/{id}")
-    BoardTo findBoardById(final @PathVariable UUID id);
+    BoardTo findBoardById(final @Param UUID id);
 
     /**
      * Создание доски.

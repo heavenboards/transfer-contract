@@ -25,10 +25,10 @@ public class AuthForwardingRequestInterceptor implements RequestInterceptor {
         Collection<String> headerTokens = requestTemplate.headers().get(HttpHeaders.AUTHORIZATION);
         if (headerTokens == null || headerTokens.isEmpty()) {
             String authorization = Optional.ofNullable(RequestContextHolder.getRequestAttributes())
-                    .map(ServletRequestAttributes.class::cast)
-                    .map(ServletRequestAttributes::getRequest)
-                    .map(req -> req.getHeader(HttpHeaders.AUTHORIZATION))
-                    .orElse(null);
+                .map(ServletRequestAttributes.class::cast)
+                .map(ServletRequestAttributes::getRequest)
+                .map(req -> req.getHeader(HttpHeaders.AUTHORIZATION))
+                .orElse(null);
 
             if (authorization != null) {
                 requestTemplate.header(HttpHeaders.AUTHORIZATION, authorization);

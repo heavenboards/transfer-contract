@@ -10,8 +10,8 @@ import transfer.contract.domain.task.TaskTo;
  * Api-клиент для взаимодействия с задачами.
  */
 @Headers({
-        "Accept: application/json",
-        "Content-Type: application/json"
+    "Accept: application/json",
+    "Content-Type: application/json"
 })
 public interface TaskApi {
     /**

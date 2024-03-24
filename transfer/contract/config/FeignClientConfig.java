@@ -9,7 +9,6 @@ import feign.jackson.JacksonDecoder;
 import feign.jackson.JacksonEncoder;
 import feign.okhttp.OkHttpClient;
 import feign.slf4j.Slf4jLogger;
-import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -36,27 +35,25 @@ public class FeignClientConfig {
     private final ObjectMapper objectMapper;
 
     /**
-     * Данные для конфигурации Feign-клиента без целевого объекта.
-     * Инициализируется с настройками клиента, интерсептором аутентификации,
-     * декодером и кодировщиком Jackson, логгером Slf4j, уровнем логгирования NONE,
-     * стратегией повторных попыток NEVER_RETRY и опциями запроса.
+     * Метод для получения Feign клиента для API.
+     *
+     * @param apiClient класс, представляющий API клиента
+     * @param baseUrl   базовый URL для API
+     * @param <T>       тип API клиента
+     * @return экземпляр Feign клиента для указанного API
      */
-    private Feign.Builder feignBuilderWithoutTarget;
+    private <T> T createFeignForApi(Class<T> apiClient, String baseUrl) {
+        return Feign.builder()
+            .client(new OkHttpClient())
+            .requestInterceptor(new AuthForwardingRequestInterceptor())
+            .decoder(new JacksonDecoder(objectMapper))
+            .encoder(new JacksonEncoder(objectMapper))
+            .logger(new Slf4jLogger(ProjectApi.class))
+            .logLevel(Logger.Level.NONE)
+            .retryer(Retryer.NEVER_RETRY)
+            .options(new Request.Options(15, TimeUnit.MINUTES, 15, TimeUnit.MINUTES, true))
+            .target(apiClient, baseUrl);
 
-    /**
-     * Инициализация {@link #feignBuilderWithoutTarget}.
-     */
-    @PostConstruct
-    private void initFeignBuilderWithoutTarget() {
-        feignBuilderWithoutTarget = Feign.builder()
-                .client(new OkHttpClient())
-                .requestInterceptor(new AuthForwardingRequestInterceptor())
-                .decoder(new JacksonDecoder(objectMapper))
-                .encoder(new JacksonEncoder(objectMapper))
-                .logger(new Slf4jLogger(ProjectApi.class))
-                .logLevel(Logger.Level.NONE)
-                .retryer(Retryer.NEVER_RETRY)
-                .options(new Request.Options(15, TimeUnit.MINUTES, 15, TimeUnit.MINUTES, true));
     }
 
     /**
@@ -67,7 +64,7 @@ public class FeignClientConfig {
      */
     @Bean
     public AuthenticationApi authenticationApi(@Value("${microservice.user-api.url}") String baseUrl) {
-        return feignBuilderWithoutTarget.target(AuthenticationApi.class, baseUrl);
+        return createFeignForApi(AuthenticationApi.class, baseUrl);
     }
 
     /**
@@ -78,7 +75,7 @@ public class FeignClientConfig {
      */
     @Bean
     public BoardApi boardApi(@Value("${microservice.board-api.url}") String baseUrl) {
-        return feignBuilderWithoutTarget.target(BoardApi.class, baseUrl);
+        return createFeignForApi(BoardApi.class, baseUrl);
     }
 
     /**
@@ -89,7 +86,7 @@ public class FeignClientConfig {
      */
     @Bean
     public GroupApi groupApi(@Value("${microservice.task-api.url}") String baseUrl) {
-        return feignBuilderWithoutTarget.target(GroupApi.class, baseUrl);
+        return createFeignForApi(GroupApi.class, baseUrl);
     }
 
     /**
@@ -100,7 +97,7 @@ public class FeignClientConfig {
      */
     @Bean
     public InvitationApi invitationApi(@Value("${microservice.user-api.url}") String baseUrl) {
-        return feignBuilderWithoutTarget.target(InvitationApi.class, baseUrl);
+        return createFeignForApi(InvitationApi.class, baseUrl);
     }
 
     /**
@@ -111,7 +108,7 @@ public class FeignClientConfig {
      */
     @Bean
     public ProjectApi projectApi(@Value("${microservice.project-api.url}") String baseUrl) {
-        return feignBuilderWithoutTarget.target(ProjectApi.class, baseUrl);
+        return createFeignForApi(ProjectApi.class, baseUrl);
     }
 
     /**
@@ -122,7 +119,7 @@ public class FeignClientConfig {
      */
     @Bean
     public TaskApi taskApi(@Value("${microservice.task-api.url}") String baseUrl) {
-        return feignBuilderWithoutTarget.target(TaskApi.class, baseUrl);
+        return createFeignForApi(TaskApi.class, baseUrl);
     }
 
     /**
@@ -133,6 +130,6 @@ public class FeignClientConfig {
      */
     @Bean
     public UserApi userApi(@Value("${microservice.user-api.url}") String baseUrl) {
-        return feignBuilderWithoutTarget.target(UserApi.class, baseUrl);
+        return createFeignForApi(UserApi.class, baseUrl);
     }
 }

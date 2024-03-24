@@ -10,8 +10,8 @@ import transfer.contract.domain.group.GroupTo;
  * Api-клиент для взаимодействия с группами задач.
  */
 @Headers({
-        "Accept: application/json",
-        "Content-Type: application/json"
+    "Accept: application/json",
+    "Content-Type: application/json"
 })
 public interface GroupApi {
     /**

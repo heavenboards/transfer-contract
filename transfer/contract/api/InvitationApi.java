@@ -12,8 +12,8 @@ import java.util.List;
  * Api-клиент для взаимодействия с приглашениями.
  */
 @Headers({
-        "Accept: application/json",
-        "Content-Type: application/json"
+    "Accept: application/json",
+    "Content-Type: application/json"
 })
 public interface InvitationApi {
     /**

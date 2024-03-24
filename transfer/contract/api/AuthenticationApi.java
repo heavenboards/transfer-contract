@@ -10,8 +10,8 @@ import transfer.contract.domain.user.UserTo;
  * Api-клиент для регистрации / аутентификации.
  */
 @Headers({
-        "Accept: application/json",
-        "Content-Type: application/json"
+    "Accept: application/json",
+    "Content-Type: application/json"
 })
 public interface AuthenticationApi {
     /**
