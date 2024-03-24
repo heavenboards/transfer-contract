@@ -1,8 +1,7 @@
 package transfer.contract.api;
 
 import feign.Headers;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.PostMapping;
+import feign.RequestLine;
 import org.springframework.web.bind.annotation.RequestBody;
 import transfer.contract.domain.task.TaskOperationResultTo;
 import transfer.contract.domain.task.TaskTo;
@@ -14,10 +13,6 @@ import transfer.contract.domain.task.TaskTo;
     "Accept: application/json",
     "Content-Type: application/json"
 })
-@FeignClient(
-    value = "task-api",
-    url = "${microservice.task-api.url}"
-)
 public interface TaskApi {
     /**
      * Создать задачу.
@@ -25,6 +20,6 @@ public interface TaskApi {
      * @param task - to-модель задачи
      * @return результат операции создания задачи
      */
-    @PostMapping(value = "/api/v1/task", produces = "application/json")
+    @RequestLine("POST /api/v1/task")
     TaskOperationResultTo createTask(final @RequestBody TaskTo task);
 }

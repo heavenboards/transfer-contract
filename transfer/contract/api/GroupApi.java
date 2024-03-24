@@ -1,8 +1,7 @@
 package transfer.contract.api;
 
 import feign.Headers;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.PostMapping;
+import feign.RequestLine;
 import org.springframework.web.bind.annotation.RequestBody;
 import transfer.contract.domain.group.GroupOperationResultTo;
 import transfer.contract.domain.group.GroupTo;
@@ -14,10 +13,6 @@ import transfer.contract.domain.group.GroupTo;
     "Accept: application/json",
     "Content-Type: application/json"
 })
-@FeignClient(
-    value = "group-api",
-    url = "${microservice.task-api.url}"
-)
 public interface GroupApi {
     /**
      * Создать группу задач.
@@ -25,6 +20,6 @@ public interface GroupApi {
      * @param group - to-модель группы задач
      * @return результат операции создания группы задач
      */
-    @PostMapping(value = "/api/v1/group", produces = "application/json")
+    @RequestLine("POST /api/v1/group")
     GroupOperationResultTo createGroup(final @RequestBody GroupTo group);
 }

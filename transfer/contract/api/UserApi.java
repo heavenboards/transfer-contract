@@ -1,10 +1,8 @@
 package transfer.contract.api;
 
 import feign.Headers;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import feign.Param;
+import feign.RequestLine;
 import org.springframework.web.bind.annotation.RequestBody;
 import transfer.contract.domain.user.UserTo;
 
@@ -19,10 +17,6 @@ import java.util.UUID;
     "Accept: application/json",
     "Content-Type: application/json"
 })
-@FeignClient(
-    value = "user-api",
-    url = "${microservice.user-api.url}"
-)
 public interface UserApi {
     /**
      * Получение пользователя по username.
@@ -30,8 +24,8 @@ public interface UserApi {
      * @param username - username
      * @return найденный пользователь
      */
-    @GetMapping(value = "/api/v1/user/{username}", produces = "application/json")
-    UserTo findUserByUsername(@PathVariable String username);
+    @RequestLine("GET /api/v1/user/{username}")
+    UserTo findUserByUsername(final @Param String username);
 
     /**
      * Получение списка пользователей по идентификаторам.
@@ -39,6 +33,6 @@ public interface UserApi {
      * @param ids - идентификаторы пользователей, которых мы ищем
      * @return to-модели найденных пользователей
      */
-    @PostMapping(value = "/api/v1/user", produces = "application/json")
-    List<UserTo> findUsersByIds(@RequestBody Set<UUID> ids);
+    @RequestLine("POST /api/v1/user")
+    List<UserTo> findUsersByIds(final @RequestBody Set<UUID> ids);
 }

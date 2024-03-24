@@ -1,10 +1,8 @@
 package transfer.contract.api;
 
 import feign.Headers;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import feign.Param;
+import feign.RequestLine;
 import org.springframework.web.bind.annotation.RequestBody;
 import transfer.contract.domain.board.BoardOperationResultTo;
 import transfer.contract.domain.board.BoardTo;
@@ -18,10 +16,6 @@ import java.util.UUID;
     "Accept: application/json",
     "Content-Type: application/json"
 })
-@FeignClient(
-    value = "board-api",
-    url = "${microservice.board-api.url}"
-)
 public interface BoardApi {
     /**
      * Поиск доски по идентификатору.
@@ -29,8 +23,8 @@ public interface BoardApi {
      * @param id - идентификатор доски
      * @return данные доски
      */
-    @GetMapping("/api/v1/board/{id}")
-    BoardTo findBoardById(final @PathVariable UUID id);
+    @RequestLine("GET /api/v1/board/{id}")
+    BoardTo findBoardById(final @Param UUID id);
 
     /**
      * Создание доски.
@@ -38,6 +32,6 @@ public interface BoardApi {
      * @param board - to-модель создаваемой доски
      * @return результат операции создания
      */
-    @PostMapping(value = "/api/v1/board", produces = "application/json")
+    @RequestLine("POST /api/v1/board")
     BoardOperationResultTo createBoard(final @RequestBody BoardTo board);
 }
