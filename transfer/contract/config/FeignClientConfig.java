@@ -48,12 +48,11 @@ public class FeignClientConfig {
             .requestInterceptor(new AuthForwardingRequestInterceptor())
             .decoder(new JacksonDecoder(objectMapper))
             .encoder(new JacksonEncoder(objectMapper))
-            .logger(new Slf4jLogger(ProjectApi.class))
+            .logger(new Slf4jLogger(apiClient))
             .logLevel(Logger.Level.NONE)
             .retryer(Retryer.NEVER_RETRY)
             .options(new Request.Options(15, TimeUnit.MINUTES, 15, TimeUnit.MINUTES, true))
             .target(apiClient, baseUrl);
-
     }
 
     /**
