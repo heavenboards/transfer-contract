@@ -63,7 +63,15 @@ public class FeignClientConfig {
      */
     @Bean
     public AuthenticationApi authenticationApi(@Value("${microservice.user-api.url}") String baseUrl) {
-        return createFeignForApi(AuthenticationApi.class, baseUrl);
+        return Feign.builder()
+            .client(new OkHttpClient())
+            .decoder(new JacksonDecoder(objectMapper))
+            .encoder(new JacksonEncoder(objectMapper))
+            .logger(new Slf4jLogger(AuthenticationApi.class))
+            .logLevel(Logger.Level.NONE)
+            .retryer(Retryer.NEVER_RETRY)
+            .options(new Request.Options(15, TimeUnit.MINUTES, 15, TimeUnit.MINUTES, true))
+            .target(AuthenticationApi.class, baseUrl);
     }
 
     /**
@@ -129,6 +137,14 @@ public class FeignClientConfig {
      */
     @Bean
     public UserApi userApi(@Value("${microservice.user-api.url}") String baseUrl) {
-        return createFeignForApi(UserApi.class, baseUrl);
+        return Feign.builder()
+            .client(new OkHttpClient())
+            .decoder(new JacksonDecoder(objectMapper))
+            .encoder(new JacksonEncoder(objectMapper))
+            .logger(new Slf4jLogger(UserApi.class))
+            .logLevel(Logger.Level.NONE)
+            .retryer(Retryer.NEVER_RETRY)
+            .options(new Request.Options(15, TimeUnit.MINUTES, 15, TimeUnit.MINUTES, true))
+            .target(UserApi.class, baseUrl);
     }
 }
